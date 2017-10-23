@@ -1,0 +1,9 @@
+arduino- micro-oled connection
+
+Red - 3v3
+yellow - ground
+Green - 13(arduino) - SCK(microoled)
+white - 11  - S01
+blue - 10 - CS
+black - 9 - RST
+dark pink - 8 - D/C
