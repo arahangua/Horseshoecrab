@@ -89,11 +89,22 @@ for jj in range(num_of_groups):
     num_input.append(len(group[jj][0]))
 
 #main function is below.
+
+#below commented area is the lines for controlled input
+"""
 initiator(number_of_groups=num_of_groups,group_sequence=sequence)
 for ii in range(num_of_groups):
     group_declare(num_input=num_input[ii],x_coord=group[ii][0],y_coord=group[ii][1])
 stimulation_generator(delay=500, pulse_width=300,iteration=4) #(delay between blinks(ms), width of pulse (ms),number of inputs, iteration, x coordinates, y coordinates)
+"""
+#below two lines shows how to use built-in led lighting up scheme. ('a' equals light it up all)
+ser.write('a'.encode(encoding='ascii'))
+time.sleep(3)
+
+
+#below reads the printed output to the txt file
 reader()
+
 sys.stdout = orig_stdout #turn it back to normal
 f.close() #closing opened text file
 

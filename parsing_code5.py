@@ -29,7 +29,7 @@ first_x=0 #flag variable for handling custom inputs.
 custom_array=[] #again, array for handling custom inputs.
 final_array=[] #array variable that would store all the stimulation of the experiment in time sequence.
 group=[]
-
+custom_flag=0
 
 #Below are all the switches :) 
 #as the for loop scans through the txt file, it checks what kind of input was given and stores it in "final_array" 
@@ -38,7 +38,7 @@ for ii in range(len(string_array)):
     if string_array[ii]=="lighting up all\n":
         for jj in range(x_width):
             for hh in range(y_width):
-                final_array.append([ii+1,jj+1])
+                final_array.append([jj+1,hh+1])
     elif string_array[ii]=="lighting up all":
         for jj in range(x_width):
             for hh in range(y_width):
@@ -68,6 +68,7 @@ for ii in range(len(string_array)):
                 middle_prod.append([jj+1, yy+1])
             final_array.append(middle_prod)
     elif string_array[ii] == "type in the sequence of cycle with group numbers ex) 1324:\n":
+        custom_flag=1
         stimulation_seq= string_array[ii+2].rstrip('\n')
         print(stimulation_seq)
         stimulation_seq=list(map(int, stimulation_seq)) #stimulation_seq stores group sequence
@@ -87,11 +88,12 @@ for ii in range(len(string_array)):
         custom_array=[]
         first_x=0 #resetting the flag to false.
         
-        
-group = [ group[i] for i in stimulation_seq] # re-sorting group array according to sequence(group) input
-for jj in range(iteration): #counting iteration
-    final_array.append(np.array(group)) #appending the group array into final_array
-
-iteration=0 #resetting the flag to false.
+if custom_flag==1:        
+    group = [ group[i] for i in stimulation_seq] # re-sorting group array according to sequence(group) input
+    for jj in range(iteration): #counting iteration
+        final_array.append(np.array(group)) #appending the group array into final_array
+    
+    iteration=0 #resetting the flag to false.
+    custom_flag=0
 
 
